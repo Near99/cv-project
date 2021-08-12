@@ -1,0 +1,8 @@
+.eduction-input-feild {
+  display: flex;
+  flex-flow: column;
+}
+
+.after-submit {
+  visibility: hidden;
+}

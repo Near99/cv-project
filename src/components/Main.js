@@ -11,17 +11,15 @@ export default class Main extends React.Component {
       email: "",
       github: "",
       linkedin: "",
-      personals: [],
-      visiable: false,
+      visiable: true,
     },
-    profile: { text: "", profiles: [], visiable: false },
+    profile: { text: "", visiable: true },
     eduction: {
       school: "",
       degree: "",
-      marjor: "",
+      major: "",
       start: "",
       end: "",
-      eductions: [],
       visiable: true,
     },
     career: {
@@ -31,22 +29,21 @@ export default class Main extends React.Component {
       isFullTime: "",
       start: "",
       end: "",
-      careers: [],
       visiable: false,
     },
     skill: {
       text: "",
-      skills: [],
       visiable: false,
     },
   };
 
   handleChange = (event) => {
     const { id, name, value } = event.target;
+
     this.setState((prevState) => ({
       ...prevState,
       [name]: {
-        ...prevState.personal,
+        ...prevState[name],
         [id]: value,
       },
     }));
@@ -56,6 +53,7 @@ export default class Main extends React.Component {
     event.preventDefault();
     const id = event.target.id;
     const isVisiable = this.state[id].visiable;
+
     this.setState((prevState) => ({
       ...prevState,
       [id]: {
@@ -68,6 +66,7 @@ export default class Main extends React.Component {
   handleEditing = (event) => {
     const name = event.target.name;
     const isVisiable = this.state[name].visiable;
+
     this.setState((prevState) => ({
       ...prevState,
       [name]: {
@@ -105,9 +104,11 @@ export default class Main extends React.Component {
 
     return (
       <Wrapper>
-        {this.state.personal.visiable ? personal : editPersonal}
-        {this.state.profile.visiable ? profile : editProfile}
-        <CVPreview />
+        <InputFeildContainer>
+          {this.state.personal.visiable ? personal : editPersonal}
+          {this.state.profile.visiable ? profile : editProfile}
+        </InputFeildContainer>
+        <CVPreview values={this.state} />
       </Wrapper>
     );
   }
@@ -128,4 +129,10 @@ const EditButton = styled.button`
   border: 2px solid palevioletred;
   border-radius: 3px;
   height: 50px;
+`;
+
+const InputFeildContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  margin: auto;
 `;

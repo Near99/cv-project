@@ -1,8 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-export const CVPreview = () => {
-  return <Preview></Preview>;
+export const CVPreview = (props) => {
+  const { name, phone, email, github, linkedin } = props.values.personal;
+  const { text } = props.values.profile;
+  return (
+    <Preview>
+      <div>
+        <h2>Personal</h2>
+        <p>{name}</p>
+        <p>{phone}</p>
+        <p>{email}</p>
+        <p>{github}</p>
+        <p>{linkedin}</p>
+      </div>
+      <div>
+        <h2>Profile</h2>
+        <p>{text}</p>
+      </div>
+    </Preview>
+  );
 };
 
 const Preview = styled.div`

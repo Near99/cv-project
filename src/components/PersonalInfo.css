@@ -1,8 +1,0 @@
-.personal-info-input {
-  display: flex;
-  flex-flow: column;
-}
-
-.after-submit {
-  visibility: hidden;
-}

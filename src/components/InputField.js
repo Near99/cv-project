@@ -69,7 +69,6 @@ const Form = styled.form`
   margin: auto;
   background: #acf2e5;
   width: 600px;
-  /* height: 500px; */
   height: auto;
   padding: 20px;
   border-radius: 5px;

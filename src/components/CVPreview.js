@@ -1,80 +1,178 @@
 import React from "react";
 import styled from "styled-components";
+import mypic from "./profilepic.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhoneAlt, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faLinkedinIn,
+  faGithubSquare,
+} from "@fortawesome/free-brands-svg-icons";
 
 export const CVPreview = (props) => {
   const { name, phone, email, github, linkedin } = props.values.personal;
+  const { school, degree, major, start, end } = props.values.eduction;
   const { text } = props.values.profile;
+  const phoneIcon = <FontAwesomeIcon color="#03a9f4" icon={faPhoneAlt} />;
+  const linkedinIcon = <FontAwesomeIcon color="#03a9f4" icon={faLinkedinIn} />;
+  const githubIcon = <FontAwesomeIcon color="#03a9f4" icon={faGithubSquare} />;
+  const emailIcon = (
+    <FontAwesomeIcon color="#03a9f4" icon={faEnvelope} size="sm" />
+  );
+  const profilePic = (
+    <img
+      style={{ borderRadius: "50%" }}
+      width="150"
+      height="150"
+      src={mypic}
+      alt="profilepic"
+    ></img>
+  );
   return (
     <Preview>
-      {/* Side Bar */}
-      <CVSidebar>
-        <div>
+      <LeftSide>
+        <ProfilePicSection>
+          <ProfilePicBox>{profilePic}</ProfilePicBox>
           <h3>{name}</h3>
-        </div>
-        <PersonalInfoDisplay>
-          <SideBarTitle>Personal Info</SideBarTitle>
+        </ProfilePicSection>
+        <LeftSideSection>
+          <LeftSideBarTitle>Contact Info</LeftSideBarTitle>
 
-          <ItemsDisplay>Phone</ItemsDisplay>
-          <ItemsDisplay>{phone}</ItemsDisplay>
+          <PersonalInfoUl>
+            <PersonalInfoList>
+              <IconSpan>{phoneIcon}</IconSpan>
+              {phone}
+            </PersonalInfoList>
+            <PersonalInfoList>
+              <IconSpan>{emailIcon}</IconSpan>
+              {email}
+            </PersonalInfoList>
+            <PersonalInfoList>
+              <IconSpan>{githubIcon}</IconSpan>
+              {github}
+            </PersonalInfoList>
+            <PersonalInfoList>
+              <IconSpan>{linkedinIcon}</IconSpan>
+              {linkedin}
+            </PersonalInfoList>
+          </PersonalInfoUl>
+        </LeftSideSection>
 
-          <ItemsDisplay>Email</ItemsDisplay>
-          <ItemsDisplay>{email}</ItemsDisplay>
+        <LeftSideSection>
+          <LeftSideBarTitle>Eduction</LeftSideBarTitle>
+          <PersonalInfoUl>
+            <PersonalInfoList>
+              <EductionPeriod>
+                {start} - {end}
+              </EductionPeriod>
+              <MajorName>
+                {degree} in {major}
+              </MajorName>
+              <SchoolName>{school}</SchoolName>
+            </PersonalInfoList>
+            <PersonalInfoList>
+              <EductionPeriod>2017 - 2020</EductionPeriod>
+              <MajorName>Bachlor Degree in Computer Science</MajorName>
+              <SchoolName>University of London</SchoolName>
+            </PersonalInfoList>
+          </PersonalInfoUl>
+        </LeftSideSection>
 
-          <ItemsDisplay>Github</ItemsDisplay>
-          <ItemsDisplay>{github}</ItemsDisplay>
-
-          <ItemsDisplay>Linkedin</ItemsDisplay>
-          <ItemsDisplay>{linkedin}</ItemsDisplay>
-        </PersonalInfoDisplay>
-      </CVSidebar>
-      {/* Side Bar */}
-
-      {/* Main section  */}
-      <MainSectionContainer>
-        <p>{text}</p>
-      </MainSectionContainer>
-      {/* Main section  */}
+        <LeftSideSection>
+          <LeftSideBarTitle>Language</LeftSideBarTitle>
+          <PersonalInfoUl>
+            <PersonalInfoList>
+              <EductionPeriod>
+                {start} - {end}
+              </EductionPeriod>
+              <MajorName>
+                {degree} in {major}
+              </MajorName>
+              <SchoolName>{school}</SchoolName>
+            </PersonalInfoList>
+            <PersonalInfoList>
+              <EductionPeriod>2017 - 2020</EductionPeriod>
+              <MajorName>Bachlor Degree in Computer Science</MajorName>
+              <SchoolName>University of London</SchoolName>
+            </PersonalInfoList>
+          </PersonalInfoUl>
+        </LeftSideSection>
+      </LeftSide>
+      <RightSide>{text}</RightSide>
     </Preview>
   );
 };
 
 const Preview = styled.div`
   background: white;
-  display: flex;
+  display: grid;
   margin: 0 auto;
   margin-bottom: 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
   width: 21cm;
   height: 29.7cm;
-  border-right: none;
+  grid-template-columns: 1fr 2fr;
 `;
 
-const CVSidebar = styled.div`
-  border-right: 1px solid #075287;
-  background: #075287;
-  display: flex;
-  flex-flow: column;
-  align-items: left;
+const LeftSide = styled.div`
+  background: #004f73;
+  padding: 40px;
   color: #ffffff;
-  flex-grow: 1;
 `;
 
-const MainSectionContainer = styled.div`
+const RightSide = styled.div`
+  padding: 40px;
+`;
+
+const ProfilePicSection = styled.div`
+  position: relative;
   display: flex;
   flex-flow: column;
-  flex-grow: 5;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 `;
 
-const PersonalInfoDisplay = styled.div``;
-
-const SideBarTitle = styled.h3`
-  background: #043f69;
-  padding-left: 5px;
-  padding-top: 9px;
-  height: 30px;
+const LeftSideSection = styled.div`
+  position: relative;
+  margin: 25px 0 25px 0;
 `;
 
-const ItemsDisplay = styled.h6`
-  margin-top: 0;
-  padding-left: 5px;
+const LeftSideBarTitle = styled.h3`
+  text-transform: uppercase;
+  letter-spacing: 1px;
+`;
+
+const PersonalInfoUl = styled.ul`
+  padding-left: 0;
+`;
+
+const PersonalInfoList = styled.li`
+  list-style: none;
+  margin: 10px 0;
+`;
+
+const IconSpan = styled.span`
+  padding-right: 10px;
+`;
+
+const ProfilePicBox = styled.div`
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+`;
+
+const EductionPeriod = styled.h5`
+  margin: 0 0 15px 0;
+  color: #03a9f4;
+  font-weight: 500;
+`;
+
+const SchoolName = styled.h4`
+  margin: 0 0 15px 0;
+  /* font-weight: 500; */
+`;
+
+const MajorName = styled.h4`
+  margin: 0 0 15px 0;
+  font-weight: 500;
 `;

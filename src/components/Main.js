@@ -1,26 +1,26 @@
 import React from "react";
-import { Personal, Profile } from "./InputField";
+import { Personal, Profile, Eduction } from "./InputField";
 import styled from "styled-components";
 import { CVPreview } from "./CVPreview";
 
 export default class Main extends React.Component {
   state = {
     personal: {
-      name: "",
-      phone: "",
-      email: "",
-      github: "",
-      linkedin: "",
+      name: "John Doe",
+      phone: "+65-84216546",
+      email: "johndoe@gmail.com",
+      github: "github.com/johndoe",
+      linkedin: "linkedin.com/john",
       visiable: true,
     },
-    profile: { text: "", visiable: true },
+    profile: { text: "", visiable: false },
     eduction: {
-      school: "",
-      degree: "",
-      major: "",
-      start: "",
-      end: "",
-      visiable: true,
+      school: "University of London",
+      degree: "Bachelor Degree",
+      major: "Computer Science",
+      start: "2017",
+      end: "2020",
+      visiable: false,
     },
     career: {
       company: "",
@@ -102,11 +102,26 @@ export default class Main extends React.Component {
       />
     );
 
+    const editEduction = (
+      <EditButton name="eduction" onClick={this.handleEditing}>
+        Edit Eduction
+      </EditButton>
+    );
+
+    const eduction = (
+      <Eduction
+        onSubmit={this.handleSubmit}
+        onChange={this.handleChange}
+        values={this.state.eduction}
+      />
+    );
+
     return (
       <Wrapper>
         <InputFeildContainer>
           {this.state.personal.visiable ? personal : editPersonal}
           {this.state.profile.visiable ? profile : editProfile}
+          {this.state.eduction.visiable ? eduction : editEduction}
         </InputFeildContainer>
         <CVPreview values={this.state} />
       </Wrapper>

@@ -63,6 +63,51 @@ export const Profile = ({ onSubmit, onChange, values }) => {
   );
 };
 
+export const Eduction = ({ onSubmit, onChange, values }) => {
+  const { school, degree, major, start, end } = values;
+  const stateObjKey = "eduction";
+  return (
+    <Form id={stateObjKey} onSubmit={onSubmit}>
+      <label>School</label>
+      <Input
+        id="school"
+        name={stateObjKey}
+        value={school}
+        onChange={onChange}
+      ></Input>
+      <label>Phone</label>
+      <Input
+        id="degree"
+        name={stateObjKey}
+        value={degree}
+        onChange={onChange}
+      ></Input>
+      <label>Major</label>
+      <Input
+        id="major"
+        name={stateObjKey}
+        value={major}
+        onChange={onChange}
+      ></Input>
+      <label>Year of Start</label>
+      <Input
+        id="start"
+        name={stateObjKey}
+        value={start}
+        onChange={onChange}
+      ></Input>
+      <label>Year of End</label>
+      <Input
+        id="end"
+        name={stateObjKey}
+        value={end}
+        onChange={onChange}
+      ></Input>
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+};
+
 const Form = styled.form`
   display: flex;
   flex-flow: column;

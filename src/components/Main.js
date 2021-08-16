@@ -13,14 +13,18 @@ export default class Main extends React.Component {
       linkedin: "linkedin.com/john",
       visiable: true,
     },
-    profile: { text: "", visiable: false },
+    profile: {
+      text: "Sed nec ultrices odio, vitae tempor dolor. Curabitur quis lorem a leo dignissim mollis quis sed justo. Nullam volutpat vel purus in rhoncus. In congue faucibus eros, sed mattis quam aliquam vitae. Curabitur placerat orci id nisl vestibulum tempus. Morbi luctus, sem ac pulvinar porttitor, tortor libero dapibus eros, vitae lacinia tellus risus vel justo. Nunc vitae molestie ante. Praesent in laoreet urna, id molestie neque. Nam vitae ipsum vel neque pretium ultricies. Mauris nulla eros, aliquet non lorem a, congue placerat metus.",
+      visiable: false,
+    },
     eduction: {
       school: "University of London",
-      degree: "Bachelor Degree",
+      degree: "Master Degree",
       major: "Computer Science",
       start: "2017",
       end: "2020",
       visiable: false,
+      eductions: [],
     },
     career: {
       company: "",

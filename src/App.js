@@ -13,7 +13,6 @@ const App = () => {
 export default App;
 
 const Wrapper = styled.div`
-  background: #cfcfcf;
   width: 100%;
   height: 100%;
 `;

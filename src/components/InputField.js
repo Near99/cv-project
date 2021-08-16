@@ -6,35 +6,35 @@ export const Personal = ({ onSubmit, onChange, values }) => {
   const stateObjKey = "personal";
   return (
     <Form id={stateObjKey} onSubmit={onSubmit}>
-      <label>Name</label>
+      <Label>Name</Label>
       <Input
         id="name"
         name={stateObjKey}
         value={name}
         onChange={onChange}
       ></Input>
-      <label>Phone</label>
+      <Label>Phone</Label>
       <Input
         id="phone"
         name={stateObjKey}
         value={phone}
         onChange={onChange}
       ></Input>
-      <label>Email</label>
+      <Label>Email</Label>
       <Input
         id="email"
         name={stateObjKey}
         value={email}
         onChange={onChange}
       ></Input>
-      <label>Github</label>
+      <Label>Github</Label>
       <Input
         id="github"
         name={stateObjKey}
         value={github}
         onChange={onChange}
       ></Input>
-      <label>Linkedin</label>
+      <Label>Linkedin</Label>
       <Input
         id="linkedin"
         name={stateObjKey}
@@ -51,7 +51,7 @@ export const Profile = ({ onSubmit, onChange, values }) => {
   const stateObjKey = "profile";
   return (
     <Form id={stateObjKey} onSubmit={onSubmit}>
-      <label>Profile</label>
+      <Label>Profile</Label>
       <TextArea
         id="text"
         name={stateObjKey}
@@ -68,35 +68,35 @@ export const Eduction = ({ onSubmit, onChange, values }) => {
   const stateObjKey = "eduction";
   return (
     <Form id={stateObjKey} onSubmit={onSubmit}>
-      <label>School</label>
+      <Label>School</Label>
       <Input
         id="school"
         name={stateObjKey}
         value={school}
         onChange={onChange}
       ></Input>
-      <label>Phone</label>
+      <Label>Phone</Label>
       <Input
         id="degree"
         name={stateObjKey}
         value={degree}
         onChange={onChange}
       ></Input>
-      <label>Major</label>
+      <Label>Major</Label>
       <Input
         id="major"
         name={stateObjKey}
         value={major}
         onChange={onChange}
       ></Input>
-      <label>Year of Start</label>
+      <Label>Year of Start</Label>
       <Input
         id="start"
         name={stateObjKey}
         value={start}
         onChange={onChange}
       ></Input>
-      <label>Year of End</label>
+      <Label>Year of End</Label>
       <Input
         id="end"
         name={stateObjKey}
@@ -112,7 +112,8 @@ const Form = styled.form`
   display: flex;
   flex-flow: column;
   margin: auto;
-  background: #acf2e5;
+  /* background: #acf2e5; */
+  background: #146582;
   width: 600px;
   height: auto;
   padding: 20px;
@@ -128,6 +129,10 @@ const Input = styled.input`
   font-size: larger;
   border: none;
   border-radius: 5px;
+`;
+
+const Label = styled.label`
+  color: #ffffff;
 `;
 
 const Button = styled.button`

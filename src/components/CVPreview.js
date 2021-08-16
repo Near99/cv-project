@@ -72,8 +72,8 @@ export const CVPreview = (props) => {
             </PersonalInfoList>
             <PersonalInfoList>
               <EductionPeriod>2017 - 2020</EductionPeriod>
-              <MajorName>Bachlor Degree in Computer Science</MajorName>
-              <SchoolName>University of London</SchoolName>
+              <MajorName>Bachelor Degree in Computer Science</MajorName>
+              <SchoolName>University of Cambridge</SchoolName>
             </PersonalInfoList>
           </PersonalInfoUl>
         </LeftSideSection>
@@ -90,6 +90,7 @@ export const CVPreview = (props) => {
               </MajorName>
               <SchoolName>{school}</SchoolName>
             </PersonalInfoList>
+
             <PersonalInfoList>
               <EductionPeriod>2017 - 2020</EductionPeriod>
               <MajorName>Bachlor Degree in Computer Science</MajorName>
@@ -98,7 +99,12 @@ export const CVPreview = (props) => {
           </PersonalInfoUl>
         </LeftSideSection>
       </LeftSide>
-      <RightSide>{text}</RightSide>
+      <RightSide>
+        <div>
+          <h2 style={{ color: "#003147" }}>PROFILE</h2>
+          <p style={{ color: "#333" }}>{text}</p>
+        </div>
+      </RightSide>
     </Preview>
   );
 };
@@ -115,7 +121,8 @@ const Preview = styled.div`
 `;
 
 const LeftSide = styled.div`
-  background: #004f73;
+  /* background: #004f73; */
+  background: #003147;
   padding: 40px;
   color: #ffffff;
 `;
@@ -134,7 +141,7 @@ const ProfilePicSection = styled.div`
 
 const LeftSideSection = styled.div`
   position: relative;
-  margin: 25px 0 25px 0;
+  margin: 35px 0 35px 0;
 `;
 
 const LeftSideBarTitle = styled.h3`
@@ -164,7 +171,7 @@ const ProfilePicBox = styled.div`
 const EductionPeriod = styled.h5`
   margin: 0 0 15px 0;
   color: #03a9f4;
-  font-weight: 500;
+  /* font-weight: 500; */
 `;
 
 const SchoolName = styled.h4`
@@ -175,4 +182,9 @@ const SchoolName = styled.h4`
 const MajorName = styled.h4`
   margin: 0 0 15px 0;
   font-weight: 500;
+`;
+
+const ExperienceSection = styled.div`
+  display: flex;
+  flex-flow: row;
 `;

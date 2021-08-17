@@ -6,49 +6,39 @@ import { CVPreview } from "./CVPreview";
 export default class Main extends React.Component {
   state = {
     personal: {
-      name: "John Doe",
-      phone: "+65-1234567",
-      email: "johndoe@gmail.com",
-      github: "github.com/johndoe",
-      linkedin: "linkedin.com/john",
-      visiable: true,
+      name: "",
+      phone: "",
+      email: "",
+      github: "",
+      linkedin: "",
+      visiable: false,
     },
     profile: {
-      text: "Sed nec ultrices odio, vitae tempor dolor. Curabitur quis lorem a leo dignissim mollis quis sed justo. Nullam volutpat vel purus in rhoncus. In congue faucibus eros, sed mattis quam aliquam vitae. Curabitur placerat orci id nisl vestibulum tempus. Morbi luctus, sem ac pulvinar porttitor, tortor libero dapibus eros, vitae lacinia tellus risus vel justo. Nunc vitae molestie ante. Praesent in laoreet urna, id molestie neque. Nam vitae ipsum vel neque pretium ultricies. Mauris nulla eros, aliquet non lorem a, congue placerat metus.",
+      text: "",
       visiable: false,
     },
     eduction: {
-      school: "University of London",
-      degree: "Master Degree",
-      major: "Computer Science",
-      start: "2017",
-      end: "2020",
+      school: "",
+      degree: "",
+      major: "",
+      start: "",
+      end: "",
       visiable: false,
       eductions: [],
     },
     career: {
-      company: "Google",
-      position: "Frontend Developer",
-      detail:
-        "Etiam ultricies id risus ut condimentum. Nam ac arcu porttitor, varius magna eget, porta ipsum. Integer consectetur diam sit amet nibh efficitur volutpat. Fusce ac arcu urna. Quisque efficitur egestas quam quis placerat. Donec nulla ex, iaculis at felis in, fringilla consectetur tortor. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus egestas sagittis tortor a pulvinar. Donec convallis augue nec ullamcorper luctus.",
-      careerStart: "2015",
-      careerEnd: "2017",
+      company: "",
+      position: "",
+      detail: "",
+      careerStart: "",
+      careerEnd: "",
       visiable: false,
-      careers: [
-        {
-          company: "Facebook",
-          position: "Frontend Developer",
-          careerStart: "2017",
-          careerEnd: "2021",
-          detail:
-            "Etiam ultricies id risus ut condimentum. Nam ac arcu porttitor, varius magna eget, porta ipsum. Integer consectetur diam sit amet nibh efficitur volutpat. Fusce ac arcu urna. Quisque efficitur egestas quam quis placerat. Donec nulla ex, iaculis at felis in, fringilla consectetur tortor. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus egestas sagittis tortor a pulvinar. Donec convallis augue nec ullamcorper luctus.",
-        },
-      ],
+      careers: [],
     },
     skill: {
       skillText: "",
       visiable: false,
-      skills: ["JavaScript", "HTML5", "CSS3", "React", "SQL"],
+      skills: [],
     },
   };
 
@@ -103,6 +93,26 @@ export default class Main extends React.Component {
     });
   };
 
+  handleAddEduction = (event) => {
+    event.preventDefault();
+    const { school, degree, major, start, end } = this.state.eduction;
+    this.setState({
+      eduction: {
+        eductions: [
+          ...this.state.eduction.eductions,
+          { school, degree, major, start, end },
+        ],
+        school: "",
+        degree: "",
+        major: "",
+        start: "",
+        end: "",
+        // visiable will be set to false if doesn't handle it.
+        visiable: true,
+      },
+    });
+  };
+
   handleRemoveSKill = (event) => {
     const shiftKeyDown = event.shiftKey;
     const index = Number(event.target.id);
@@ -133,8 +143,20 @@ export default class Main extends React.Component {
         detail: "",
         careerStart: "",
         careerEnd: "",
+        visiable: true,
       },
-      visiable: true,
+    });
+  };
+
+  handleRemoveExperience = () => {
+    this.setState({
+      career: { careers: [] },
+    });
+  };
+
+  handleRemoveEduction = () => {
+    this.setState({
+      eduction: { eductions: [] },
     });
   };
 
@@ -178,6 +200,8 @@ export default class Main extends React.Component {
         onSubmit={this.handleSubmit}
         onChange={this.handleChange}
         values={this.state.eduction}
+        addEduction={this.handleAddEduction}
+        removeEduction={this.handleRemoveEduction}
       />
     );
 
@@ -207,6 +231,7 @@ export default class Main extends React.Component {
         onSubmit={this.handleSubmit}
         onChange={this.handleChange}
         addCareer={this.handleAddExperience}
+        removeCareer={this.handleRemoveExperience}
         values={this.state.career}
       />
     );
@@ -229,16 +254,18 @@ export default class Main extends React.Component {
 const Wrapper = styled.div`
   display: flex;
   flex-flow: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 const EditButton = styled.button`
   background: ${(props) => (props.primary ? "palevioletred" : "white")};
-  color: ${(props) => (props.primary ? "white" : "palevioletred")};
+  color: #000000;
 
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border: 2px solid palevioletred;
+  border: 2px solid #008223;
   border-radius: 3px;
   height: 50px;
 `;
@@ -247,4 +274,5 @@ const InputFeildContainer = styled.div`
   display: flex;
   flex-flow: column;
   margin: auto;
+  margin-right: 0;
 `;

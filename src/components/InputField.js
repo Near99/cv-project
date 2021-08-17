@@ -63,7 +63,13 @@ export const Profile = ({ onSubmit, onChange, values }) => {
   );
 };
 
-export const Eduction = ({ onSubmit, onChange, values }) => {
+export const Eduction = ({
+  onSubmit,
+  onChange,
+  addEduction,
+  removeEduction,
+  values,
+}) => {
   const { school, degree, major, start, end } = values;
   const stateObjKey = "eduction";
   return (
@@ -75,7 +81,7 @@ export const Eduction = ({ onSubmit, onChange, values }) => {
         value={school}
         onChange={onChange}
       ></Input>
-      <Label>Phone</Label>
+      <Label>Degree</Label>
       <Input
         id="degree"
         name={stateObjKey}
@@ -103,6 +109,8 @@ export const Eduction = ({ onSubmit, onChange, values }) => {
         value={end}
         onChange={onChange}
       ></Input>
+      <AddSkill onClick={addEduction}>Add Eduction</AddSkill>
+      <AddSkill onClick={removeEduction}>Remove Eduction</AddSkill>
       <Button type="submit">Submit</Button>
     </Form>
   );
@@ -126,7 +134,13 @@ export const Skill = ({ onSubmit, onChange, addSkill, values }) => {
   );
 };
 
-export const Career = ({ onSubmit, onChange, addCareer, values }) => {
+export const Career = ({
+  onSubmit,
+  onChange,
+  addCareer,
+  removeCareer,
+  values,
+}) => {
   const { company, position, detail, careerStart, careerEnd } = values;
   const stateObjKey = "career";
   return (
@@ -167,6 +181,7 @@ export const Career = ({ onSubmit, onChange, addCareer, values }) => {
         onChange={onChange}
       ></Input>
       <AddSkill onClick={addCareer}>Add Experience</AddSkill>
+      <AddSkill onClick={removeCareer}>Remove Experience</AddSkill>
       <Button type="submit">Submit</Button>
     </Form>
   );
@@ -226,4 +241,5 @@ const AddSkill = styled.div`
   background: #ffffff;
   /* align text to the center vertically */
   line-height: 50px;
+  border-top: 1px solid black;
 `;

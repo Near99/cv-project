@@ -11,7 +11,8 @@ import {
 
 export const CVPreview = (props) => {
   const { name, phone, email, github, linkedin } = props.values.personal;
-  const { school, degree, major, start, end } = props.values.eduction;
+  const { school, degree, major, start, end, eductions } =
+    props.values.eduction;
   const { text } = props.values.profile;
   const { skillText, skills } = props.values.skill;
   const { company, position, detail, careerStart, careerEnd, careers } =
@@ -52,6 +53,20 @@ export const CVPreview = (props) => {
       </ExperienceWapper>
     );
   });
+  const displayEduction = eductions.map((eduction, index) => {
+    return (
+      <PersonalInfoList key={index}>
+        <EductionPeriod>
+          {eduction.start} - {eduction.end}
+        </EductionPeriod>
+        <MajorName>
+          {eduction.degree} in {eduction.major}
+        </MajorName>
+        <SchoolName>{eduction.school}</SchoolName>
+      </PersonalInfoList>
+    );
+  });
+
   return (
     <Preview>
       <LeftSide>
@@ -85,19 +100,15 @@ export const CVPreview = (props) => {
         <LeftSideSection>
           <LeftSideBarTitle>Eduction</LeftSideBarTitle>
           <PersonalInfoUl>
+            {displayEduction}
             <PersonalInfoList>
               <EductionPeriod>
-                {start} - {end}
+                {start} {end}
               </EductionPeriod>
               <MajorName>
-                {degree} in {major}
+                {degree} {major}
               </MajorName>
               <SchoolName>{school}</SchoolName>
-            </PersonalInfoList>
-            <PersonalInfoList>
-              <EductionPeriod>2014 - 2017</EductionPeriod>
-              <MajorName>Bachelor Degree in Computer Science</MajorName>
-              <SchoolName>University of Cambridge</SchoolName>
             </PersonalInfoList>
           </PersonalInfoUl>
         </LeftSideSection>
@@ -116,7 +127,7 @@ export const CVPreview = (props) => {
           <p style={{ color: "#333" }}>{text}</p>
         </div>
 
-        <div>
+        <div style={{ paddingTop: "20px" }}>
           <h2 style={{ color: "#003147" }}>EXPERIENCE</h2>
           {displayCareer}
           <ExperienceWapper>
@@ -138,8 +149,9 @@ export const CVPreview = (props) => {
 const Preview = styled.div`
   background: white;
   display: grid;
-  margin: 0 auto;
-  margin-bottom: 0.5cm;
+  margin: auto;
+  margin-left: 50px;
+  /* margin-bottom: 0.5cm; */
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
   width: 21cm;
   height: 29.7cm;
@@ -147,6 +159,7 @@ const Preview = styled.div`
 `;
 
 const LeftSide = styled.div`
+  position: relative;
   /* background: #004f73; */
   background: #003147;
   padding: 40px;
@@ -154,6 +167,7 @@ const LeftSide = styled.div`
 `;
 
 const RightSide = styled.div`
+  position: relative;
   padding: 40px;
 `;
 

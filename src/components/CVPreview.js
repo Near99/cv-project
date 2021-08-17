@@ -13,6 +13,9 @@ export const CVPreview = (props) => {
   const { name, phone, email, github, linkedin } = props.values.personal;
   const { school, degree, major, start, end } = props.values.eduction;
   const { text } = props.values.profile;
+  const { skillText, skills } = props.values.skill;
+  const { company, position, detail, careerStart, careerEnd, careers } =
+    props.values.career;
   const phoneIcon = <FontAwesomeIcon color="#03a9f4" icon={faPhoneAlt} />;
   const linkedinIcon = <FontAwesomeIcon color="#03a9f4" icon={faLinkedinIn} />;
   const githubIcon = <FontAwesomeIcon color="#03a9f4" icon={faGithubSquare} />;
@@ -28,6 +31,27 @@ export const CVPreview = (props) => {
       alt="profilepic"
     ></img>
   );
+  const displaySkill = skills.map((skill, index) => {
+    return (
+      <PersonalInfoList onClick={props.removeSkill} id={index} key={index}>
+        {skill}
+      </PersonalInfoList>
+    );
+  });
+  const displayCareer = careers.map((career, index) => {
+    return (
+      <ExperienceWapper key={index}>
+        <ExperiencePeriod>
+          {career.careerStart} - {career.careerEnd}
+        </ExperiencePeriod>
+        <ExperienceDetail>
+          <h3>{career.company}</h3>
+          <h3>{career.position}</h3>
+          <p>{career.detail}</p>
+        </ExperienceDetail>
+      </ExperienceWapper>
+    );
+  });
   return (
     <Preview>
       <LeftSide>
@@ -71,7 +95,7 @@ export const CVPreview = (props) => {
               <SchoolName>{school}</SchoolName>
             </PersonalInfoList>
             <PersonalInfoList>
-              <EductionPeriod>2017 - 2020</EductionPeriod>
+              <EductionPeriod>2014 - 2017</EductionPeriod>
               <MajorName>Bachelor Degree in Computer Science</MajorName>
               <SchoolName>University of Cambridge</SchoolName>
             </PersonalInfoList>
@@ -79,23 +103,10 @@ export const CVPreview = (props) => {
         </LeftSideSection>
 
         <LeftSideSection>
-          <LeftSideBarTitle>Language</LeftSideBarTitle>
+          <LeftSideBarTitle>Skill</LeftSideBarTitle>
           <PersonalInfoUl>
-            <PersonalInfoList>
-              <EductionPeriod>
-                {start} - {end}
-              </EductionPeriod>
-              <MajorName>
-                {degree} in {major}
-              </MajorName>
-              <SchoolName>{school}</SchoolName>
-            </PersonalInfoList>
-
-            <PersonalInfoList>
-              <EductionPeriod>2017 - 2020</EductionPeriod>
-              <MajorName>Bachlor Degree in Computer Science</MajorName>
-              <SchoolName>University of London</SchoolName>
-            </PersonalInfoList>
+            {displaySkill}
+            {skillText}
           </PersonalInfoUl>
         </LeftSideSection>
       </LeftSide>
@@ -103,6 +114,21 @@ export const CVPreview = (props) => {
         <div>
           <h2 style={{ color: "#003147" }}>PROFILE</h2>
           <p style={{ color: "#333" }}>{text}</p>
+        </div>
+
+        <div>
+          <h2 style={{ color: "#003147" }}>EXPERIENCE</h2>
+          {displayCareer}
+          <ExperienceWapper>
+            <ExperiencePeriod>
+              {careerStart} {careerEnd}
+            </ExperiencePeriod>
+            <ExperienceDetail>
+              <h3>{company}</h3>
+              <h3>{position}</h3>
+              <p>{detail}</p>
+            </ExperienceDetail>
+          </ExperienceWapper>
         </div>
       </RightSide>
     </Preview>
@@ -184,7 +210,23 @@ const MajorName = styled.h4`
   font-weight: 500;
 `;
 
-const ExperienceSection = styled.div`
+const ExperiencePeriod = styled.div`
+  width: auto;
+  height: 50px;
+  font-family: "Cinzel", serif;
+  /* font-weight: bolder; */
+  text-align: center;
+  background: #ffffff;
+  /* align text to the center vertically */
+  line-height: 50px;
+  margin-top: 5px;
+`;
+
+const ExperienceDetail = styled.div`
+  margin-left: 50px;
+`;
+
+const ExperienceWapper = styled.div`
   display: flex;
   flex-flow: row;
 `;

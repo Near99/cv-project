@@ -108,6 +108,70 @@ export const Eduction = ({ onSubmit, onChange, values }) => {
   );
 };
 
+export const Skill = ({ onSubmit, onChange, addSkill, values }) => {
+  const { skillText } = values;
+  const stateObjKey = "skill";
+  return (
+    <Form id={stateObjKey} onSubmit={onSubmit}>
+      <Label>Skill</Label>
+      <Input
+        id="skillText"
+        name={stateObjKey}
+        value={skillText}
+        onChange={onChange}
+      ></Input>
+      <AddSkill onClick={addSkill}>Add Skill</AddSkill>
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+};
+
+export const Career = ({ onSubmit, onChange, addCareer, values }) => {
+  const { company, position, detail, careerStart, careerEnd } = values;
+  const stateObjKey = "career";
+  return (
+    <Form id={stateObjKey} onSubmit={onSubmit}>
+      <Label>Company</Label>
+      <Input
+        id="company"
+        name={stateObjKey}
+        value={company}
+        onChange={onChange}
+      ></Input>
+      <Label>Position</Label>
+      <Input
+        id="position"
+        name={stateObjKey}
+        value={position}
+        onChange={onChange}
+      ></Input>
+      <Label>Detail</Label>
+      <TextArea
+        id="detail"
+        name={stateObjKey}
+        value={detail}
+        onChange={onChange}
+      ></TextArea>
+      <Label>Year of Start</Label>
+      <Input
+        id="careerStart"
+        name={stateObjKey}
+        value={careerStart}
+        onChange={onChange}
+      ></Input>
+      <Label>Year of End</Label>
+      <Input
+        id="careerEnd"
+        name={stateObjKey}
+        value={careerEnd}
+        onChange={onChange}
+      ></Input>
+      <AddSkill onClick={addCareer}>Add Experience</AddSkill>
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+};
+
 const Form = styled.form`
   display: flex;
   flex-flow: column;
@@ -150,4 +214,16 @@ const TextArea = styled.textarea`
   font-size: larger;
   border: none;
   border-radius: 5px;
+`;
+
+const AddSkill = styled.div`
+  width: auto;
+  height: 50px;
+  font-family: "Cinzel", serif;
+  /* font-weight: bolder; */
+  cursor: pointer;
+  text-align: center;
+  background: #ffffff;
+  /* align text to the center vertically */
+  line-height: 50px;
 `;

@@ -1,5 +1,6 @@
 ![2021-08-17-215931_3440x1440_scrot](https://user-images.githubusercontent.com/22412008/129743755-9187fcc4-9192-4ae2-afe2-fa87e3642a9d.png)
 # CV Generator from The Odin Project
+Demo: https://near99.github.io/cv-project/
 
 ### I hate styling more than anything
 
